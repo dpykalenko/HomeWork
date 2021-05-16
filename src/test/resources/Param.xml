@@ -1,0 +1,12 @@
+<suite name="Full param" verbose="1">
+    <test name="Parameter">
+    <parameter name="param" value="Param test"/>
+        <classes>
+            <class name="ArrayOperationsTest">
+                <methods>
+                    <include name="testParam"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

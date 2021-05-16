@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Full smoke">
+    <test name="parallel_5_threads_tests" parallel="methods" thread-count="5">
+        <classes>
+            <class name="ArrayOperationsTest"/>
+        </classes>
+    </test>
+    <test name="smoke">
+        <classes>
+            <class name="CustomComparatorTest"/>
+        </classes>
+    </test>
+</suite>
