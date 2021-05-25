@@ -60,8 +60,7 @@ public class Task1 {
             }
             i++;
 
-            driver.findElement(By.xpath("//a[@href='https://rozetka.com.ua/mobile-phones/c80003/producer=samsung/']")).click();
-            driver.findElement(By.xpath("//a[@href='#icon-compare']")).click();
+
         }
     }
 
