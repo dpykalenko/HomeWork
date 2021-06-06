@@ -8,7 +8,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 public class BasicFactoryPage {
     WebDriver driver;
-    private WebDriverWait wait;
+    public WebDriverWait wait;
 
     public BasicFactoryPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -19,8 +19,4 @@ public class BasicFactoryPage {
         driver.navigate().back();
     }
 
-    public void waitForElement(By selector)
-    {
-        wait.until(presenceOfElementLocated(selector));
-    }
 }

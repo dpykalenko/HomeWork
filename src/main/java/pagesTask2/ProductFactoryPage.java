@@ -1,11 +1,12 @@
 package pagesTask2;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class ProductFactoryPage extends BasicFactoryPage {
 
@@ -17,10 +18,12 @@ public class ProductFactoryPage extends BasicFactoryPage {
     WebElement titleOfProduct;
     @FindBy(xpath="//rz-comparison")
     WebElement headerComaparisonButton;
-
-    By counterComparedProducts = By.xpath("//rz-icon-counter//span");
-    By comparisonPopup = By.xpath("//a[@class='comparison-modal__link']");
-    By informationAboutProduct = By.xpath("//div[@class='product-about__right']");
+    @FindBy(xpath="//rz-icon-counter//span")
+    WebElement counterComparedProducts;
+    @FindBy(xpath="//a[@class='comparison-modal__link']")
+    WebElement comparisonPopup;
+    @FindBy(xpath="//div[@class='product-about__right']")
+    WebElement informationAboutProduct;
 
     public ProductFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -28,13 +31,13 @@ public class ProductFactoryPage extends BasicFactoryPage {
     }
 
     public void addToCompare(){
-        waitForElement(informationAboutProduct);
+        wait.until(visibilityOf(informationAboutProduct));
         compareButton.click();
     }
 
     public String getCounterIconText(){
-        waitForElement(counterComparedProducts);
-        return driver.findElement(counterComparedProducts).getText();
+        wait.until(visibilityOf(counterComparedProducts));
+        return counterComparedProducts.getText();
     }
     public int getMonitorPriceOnSelectionPage(){
         String priceText = priceElement.getText();
@@ -49,7 +52,7 @@ public class ProductFactoryPage extends BasicFactoryPage {
 
     public void openComparePage(){
         headerComaparisonButton.click();
-        waitForElement(comparisonPopup);
-        driver.findElement(comparisonPopup).click();
+        wait.until(visibilityOf(comparisonPopup));
+        comparisonPopup.click();
     }
 }

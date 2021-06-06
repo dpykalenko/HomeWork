@@ -3,21 +3,27 @@ package pagesTask2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ProductListFactoryPage extends BasicFactoryPage {
-    By uploadedElements = By.xpath("//div[@class='goods-tile__inner']");
-    By monitorsBlocks = By.xpath("//div[@class='goods-tile__inner']");
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
+public class ProductListFactoryPage extends BasicFactoryPage {
+    @FindBy(xpath="//div[@class='goods-tile__inner']")
+    WebElement uploadedElements;
+    @FindBy(xpath="//div[@class='goods-tile__inner']")
+    List <WebElement> monitorsBlocks;
     public ProductListFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
+        PageFactory.initElements(driver, this);
     }
 
     public void filterMonitorsAndSelect(int priceLimit){
-        waitForElement(uploadedElements);
-        List<WebElement> resultTiles = driver.findElements(monitorsBlocks);
+        wait.until(visibilityOf(uploadedElements));
+        List<WebElement> resultTiles = monitorsBlocks;
         int i = 1;
         for (WebElement tile : resultTiles) {
             WebElement span = tile.findElement(By.xpath("(//span[@class='goods-tile__price-value'])[" + i + "]"));

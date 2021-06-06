@@ -9,19 +9,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 
 public class СomparisonFactoryPage extends BasicFactoryPage {
     @FindBy(xpath="//li[@class='products-grid__cell ng-star-inserted']")
     List<WebElement> compareBlocks;
-
-    By productsGrid = By.xpath("//ul[@class='products-grid']");
+    @FindBy(xpath="//ul[@class='products-grid']")
+    WebElement productsGrid;
 
     public СomparisonFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
         PageFactory.initElements(driver, this);
     }
     public int getBlocksCount(){
-        waitForElement(productsGrid);
+        wait.until(visibilityOf(productsGrid));
         return compareBlocks.size();
     }
     public String getMonitorName(int numberOfMonitor){
